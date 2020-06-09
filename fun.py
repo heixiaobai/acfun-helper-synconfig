@@ -3,9 +3,10 @@ import redis
 import requests
 from requests.adapters import HTTPAdapter
 
+r = redis.StrictRedis(host="localhost", port=6379)
+
 
 def save_option(uid: str, options):
-    r = redis.StrictRedis(host="localhost", port=6379)
     r.set(uid, options)
 
 
