@@ -8,6 +8,7 @@ r = redis.StrictRedis(host="localhost", port=6379)
 
 def save_option(uid: str, options):
     r.set(uid, options)
+    print("test:oK")
 
 
 def auth_cookie(cookie: str):
