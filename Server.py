@@ -30,8 +30,10 @@ def upload():
     """
     optionsJson = json.loads(request.form.get('options_data'))
     # 从options中读取cookie，因为AcPassToken被放在另一个key，所以需要拼接
-    cookie = optionsJson["AcCookies"]+"; acPasstoken="+optionsJson["AcPassToken"]
-
+    try:
+        cookie = optionsJson["AcCookies"]+"; acPasstoken="+optionsJson["AcPassToken"]
+    except KeyError:
+        return "Cookie Error"
     # 验证传递的cookie，验证正常则根据uid将options存入redis
     if fun.auth_cookie(cookie):
         uid = dict(i.split("=") for i in cookie.split("; "))['auth_key']

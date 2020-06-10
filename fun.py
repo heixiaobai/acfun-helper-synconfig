@@ -53,7 +53,7 @@ def auth_cookie(cookie: str):
             return False
     except Exception as e:
         # 暂时没有遇到需要处理的错误
-        # TODO: 应该将错误写入error log，而不是答应
+        # TODO: 应该将错误写入error log，而不是打印
         print(e.args)
         import traceback
         print(traceback.format_exc())
