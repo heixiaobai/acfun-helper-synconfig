@@ -14,7 +14,7 @@ def index():
 
 @app.route("/api/acfun-helper/options/version", methods=['GET'])
 def option_version():
-    version_info = "bate-0.1"
+    version_info = "bate-0.2"
     return version_info
 
 
