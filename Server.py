@@ -51,7 +51,10 @@ def download():
     :return: 返回options，UID对应的option不存在返回None
     """
     authCookie = json.loads(request.form.get('authCookie'))
-    cookie = authCookie["AcCookies"]+"; acPasstoken="+authCookie["AcPassToken"]
+    try:
+        cookie = authCookie["AcCookies"]+"; acPasstoken="+authCookie["AcPassToken"]
+    except KeyError:
+        return "Cookie Error"
     if fun.auth_cookie(cookie):
         uid = dict(i.split("=") for i in cookie.split("; "))['auth_key']
         data = fun.load_option(uid)
