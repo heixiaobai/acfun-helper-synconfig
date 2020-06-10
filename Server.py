@@ -20,7 +20,7 @@ def option_version():
 
 @app.route("/api/acfun-helper/options/upload", methods=['POST'])
 def upload():
-    # print(request.form.get('Cookie'))
+    # print(request.form.get('options_data'))
 
     optionsJson = json.loads(request.form.get('options_data'))
     cookie = optionsJson["AcCookies"]+"; acPasstoken="+optionsJson["AcPassToken"]
@@ -38,5 +38,16 @@ def upload():
         return "Auth Error"
 
 
-# @app.route("/api/acfun-helper/options/download", methods=['POST'])
-# def download():
+@app.route("/api/acfun-helper/options/download", methods=['POST'])
+def download():
+    authCookie = json.loads(request.form.get('authCookie'))
+    cookie = authCookie["AcCookies"]+"; acPasstoken="+authCookie["AcPassToken"]
+    if fun.auth_cookie(cookie):
+        uid = dict(i.split("=") for i in cookie.split("; "))['auth_key']
+        data = fun.load_option(uid)
+        if data is None:
+            return "None"
+        else:
+            return data
+    else:
+        return "Auth Error"

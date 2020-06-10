@@ -11,6 +11,10 @@ def save_option(uid: str, options):
     print("test:oK")
 
 
+def load_option(uid: str):
+    return r.get(uid)
+
+
 def auth_cookie(cookie: str):
     """
     传入Cookie，向官方API验证
