@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 import redis
+import config
 import requests
 from requests.adapters import HTTPAdapter
 
-# TODO: 临时连接测试用，上线时应该重新修改
-r = redis.StrictRedis(host="localhost", port=6379)
+r = redis.StrictRedis(connection_pool=redis.ConnectionPool.from_url(config.REDIS_URL))
 
 
 def save_option(uid: str, options: str):
@@ -14,7 +14,7 @@ def save_option(uid: str, options: str):
     :param options: 字符化的dict
     :return: None
     """
-    r.set(uid, options)
+    r.set("options:"+uid, options)
 
 
 def load_option(uid: str):
@@ -23,7 +23,7 @@ def load_option(uid: str):
     :param uid: UId
     :return: 字符化的dict
     """
-    return r.get(uid)
+    return r.get("options:"+uid)
 
 
 def auth_cookie(cookie: str):
