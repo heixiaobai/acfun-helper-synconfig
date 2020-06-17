@@ -12,6 +12,5 @@ REDIS_URL = "redis://@localhost:6379/0"
 
 # 上线时需要设置将密钥替换为128位以上的随机字符串
 SECRET_KEY = "Dev Test"
-SESSION_USE_SIGNER = True
 # session存活时间，单位秒
 SESSION_LIFETIME = 60
