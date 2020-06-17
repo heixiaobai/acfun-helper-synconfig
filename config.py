@@ -5,8 +5,6 @@
 开发阶段测试文件，正式上线后应移除后根据实际情况重新设置
 """
 
-SESSION_TYPE = "redis"
-
 # 上线后需要根据需求重设Redis
 REDIS_URL = "redis://@localhost:6379/0"
 
