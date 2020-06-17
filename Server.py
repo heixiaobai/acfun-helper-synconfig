@@ -11,6 +11,7 @@ app.config['SESSION_TYPE'] = 'redis'
 app.config['SESSION_USE_SIGNER'] = True
 app.config['PERMANENT_SESSION_LIFETIME'] = config.SESSION_LIFETIME
 app.config['SESSION_REDIS'] = redis.StrictRedis(connection_pool=redis.ConnectionPool.from_url(config.REDIS_URL))
+app.config['SESSION_KEY_PREFIX'] = "session:"
 
 
 @app.route("/")
